@@ -1,3 +1,4 @@
-# Adding Firebase to existing project
+# Waldo with TDD / Firebase BaaS
 
-This project is for the <https://www.theodinproject.com/lessons/javascript-using-baas-for-your-back-end> section assignment.  I chose my early, foundations-track library project as it is straightforward and I'll be getting deeper into using BaaS in future projects.
+This project I will embrace the TDD philosophy and apply the learnings from the Battleshipp TDD project. It will also include a BaaS (Firebase/Firestore) to store the hit coordinates for each target to be queried by the frontend.
+
