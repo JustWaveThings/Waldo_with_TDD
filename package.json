@@ -4,7 +4,7 @@
   "description": "Adding Firebase BaaS to earlier project",
   "main": ".src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "jest": "jest --watch --watchALL --verbose",
     "build": "webpack",
     "watch": "webpack --watch",
     "start": "webpack serve",
@@ -43,6 +43,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-webpack-plugin": "^4.0.0",
     "gh-pages": "^5.0.0",
+    "jest": "^29.5.0",
     "source-map-loader": "^4.0.1",
     "stylelint": "^15.3.0",
     "stylelint-config-standard": "^31.0.0",
