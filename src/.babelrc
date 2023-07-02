@@ -1,8 +1,13 @@
-
 {
-"presets": ["@babel/preset-env",["airbnb", {
-    "modules": "auto"
-    }]]
+  "presets": [
+    "@babel/preset-env",
+    [
+      "airbnb",
+      {
+        "modules": "auto"
+      }
+    ]
+  ]
 }
 
 /* The official presets are:
