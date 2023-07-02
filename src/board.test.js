@@ -11,7 +11,7 @@ describe('Testing Board', () => {
     test('should see if it exists', () => {
       expect(testBoard).toBeDefined();
     });
-    test('initialized with characters', () => {
+    test('initialized with character array', () => {
       expect(testBoard.characterArray).toEqual(testCharacters);
     });
   });
