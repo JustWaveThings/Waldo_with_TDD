@@ -3,9 +3,9 @@
 describe('Testing Board', () => {
   let testBoard;
   const testCharacters = [
-    { name: 'a', value: false },
-    { name: 'b', value: false },
-    { name: 'c', value: false },
+    { name: 'a', found: false },
+    { name: 'b', found: false },
+    { name: 'c', found: false },
   ];
 
   beforeAll(() => {
@@ -29,14 +29,26 @@ describe('Testing Board', () => {
   });
 
   describe('board returns', () => {
-    testCharacters[0].value = true;
     test('return true for character a on "foundStatus"', () => {
-      expect(testBoard.characterArray[0].value).toEqual(true);
+      // arrange
+      testCharacters[0].found = true;
+      const assert = true;
+
+      // act
+
+      // assert
+      expect(testBoard.characterArray[0].found).toBe(assert);
     });
 
     test('returns count of two characters for false values', () => {
-      const activeChars = testBoard.characterArray.filter(item => item.value === false);
-      expect(activeChars).toHaveLength(2);
+      // arrange
+      testCharacters[0].found = true;
+      const assert = 2;
+      // act
+      const activeChars = testBoard.characterArray.filter(item => item.found === false);
+
+      // assert
+      expect(activeChars.length).toBe(assert);
     });
   });
 });
