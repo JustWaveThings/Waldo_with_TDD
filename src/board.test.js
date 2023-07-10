@@ -14,7 +14,6 @@ describe('Testing Board', () => {
         characterArray: characters,
       }))
     );
-
     testBoard = require('./board')(testCharacters);
   });
 
