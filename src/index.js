@@ -5,7 +5,6 @@
 import './style.css';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, doc, query, where, orderBy, onSnapshot, deleteDoc, addDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
-import trashIcon from './img/delete.svg';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDHbAqh5qZOjfDBB4J4VnbcN6-gwBfdS3I',
@@ -20,7 +19,7 @@ initializeApp(firebaseConfig);
 
 const db = getFirestore();
 
-let myLibrary = [];
+const myLibrary = [];
 
 // book collection
 
@@ -32,7 +31,7 @@ const queryAllAscending = query(colRef, orderBy('createdAt'));
 
 // real time collection subscription
 
-onSnapshot(queryAllAscending, snapshot => {
+/* onSnapshot(queryAllAscending, snapshot => {
   emptyBookshelf();
   const firebaseBooks = [];
   snapshot.docs.forEach(docs => {
@@ -76,11 +75,11 @@ const Book = class {
     this.readStatus = readStatus;
     this.id = id;
   }
-};
+}; */
 
-Book.prototype.addBookToLibrary = function () {
+/* Book.prototype.addBookToLibrary = function () {
   myLibrary.push(this);
-};
+}; */
 
 function deleteFsBookWrapper() {
   const deleteFsBooks = document.querySelectorAll('#delete');
@@ -111,84 +110,3 @@ function updateFsReadStatusWrapper() {
 }
 
 const container = document.querySelector('#proj-cont');
-
-function emptyBookshelf(parent = container) {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
-  }
-}
-
-function drawLibrary() {
-  let i = 0;
-  do {
-    displayBooksInArray(myLibrary[i]);
-    i += 1;
-  } while (i <= myLibrary.length - 1);
-
-  function displayBooksInArray() {
-    const bookContainer = document.createElement('li');
-    bookContainer.classList.add('proj-item');
-
-    const titleLabel = document.createElement('h4');
-    titleLabel.classList.add('item-desc', 'book-title');
-    titleLabel.textContent = 'Title:';
-
-    const titleValue = document.createElement('h5');
-    titleValue.classList.add('item-book-title');
-    titleValue.id = 'title-cont';
-    titleValue.textContent = myLibrary[i]?.title;
-
-    const authorLabel = document.createElement('h4');
-    authorLabel.classList.add('item-desc', 'author');
-    authorLabel.textContent = 'Author:';
-
-    const authorValue = document.createElement('h5');
-    authorValue.classList.add('item-author');
-    authorValue.id = 'author-cont';
-    authorValue.textContent = myLibrary[i]?.author;
-
-    const pagesLabel = document.createElement('h4');
-    pagesLabel.classList.add('item-desc', 'pages');
-    pagesLabel.textContent = 'Pages:';
-
-    const pagesValue = document.createElement('h5');
-    pagesValue.classList.add('item-pages');
-    pagesValue.id = 'pages-cont';
-    pagesValue.textContent = myLibrary[i]?.pages;
-
-    const readLabel = document.createElement('h4');
-    readLabel.classList.add('item-desc', 'read-toggle');
-    readLabel.textContent = 'Read?:';
-
-    const readValue = document.createElement('input');
-    readValue.setAttribute('class', 'checkbox');
-    readValue.id = 'checkbox';
-    readValue.setAttribute('type', 'checkbox');
-    readValue.setAttribute('name', 'checkbox');
-    myLibrary[i]?.readStatus === true && (readValue.checked = true);
-
-    readValue.dataset.id = myLibrary[i]?.id;
-
-    const deleteIcon = document.createElement('input');
-    deleteIcon.setAttribute('type', 'image');
-    deleteIcon.setAttribute('name', 'delete');
-    deleteIcon.setAttribute('id', 'delete');
-    deleteIcon.setAttribute('src', trashIcon);
-
-    deleteIcon.classList.add('delete');
-    deleteIcon.dataset.id = myLibrary[i]?.id;
-
-    container.appendChild(bookContainer);
-    bookContainer.appendChild(titleLabel);
-    bookContainer.appendChild(titleValue);
-    bookContainer.appendChild(authorLabel);
-    bookContainer.appendChild(authorValue);
-    bookContainer.appendChild(pagesLabel);
-    bookContainer.appendChild(pagesValue);
-    bookContainer.appendChild(readLabel);
-    bookContainer.appendChild(readValue);
-    bookContainer.appendChild(deleteIcon);
-    deleteFsBookWrapper();
-    updateFsReadStatusWrapper();
-  }
-}
